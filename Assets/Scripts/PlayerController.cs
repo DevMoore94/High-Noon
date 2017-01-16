@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     int playerHealth;
-    Transform player;
+	Vector3 movement;
+	public Rigidbody playerRigidbody;
+	public float playerSpeed = 5f;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+		playerRigidbody = GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,9 @@ public class PlayerController : MonoBehaviour {
 
     void move(float h, float v)
     {
+		movement.Set (h, 0f, v);
 
+		movement = movement.normalized * playerSpeed * Time.deltaTime;
+		playerRigidbody.MovePosition (transform.position + movement);
     }
 }
