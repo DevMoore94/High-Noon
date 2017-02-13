@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour {
 	public Rigidbody playerRigidbody;
 	public float playerSpeed = 5f;
 
+
 	// Use this for initialization
 	void Awake () {
 		playerRigidbody = GetComponent<Rigidbody> ();
+		playerHealth = 100;
 	}
 	
 	// Update is called once per frame
@@ -19,15 +21,20 @@ public class PlayerController : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        move(h, v);
+	    movePlayer(h, v);
 
 	}
 
-    void move(float h, float v)
+    void movePlayer(float h, float v)
     {
 		movement.Set (h, 0f, v);
 
 		movement = movement.normalized * playerSpeed * Time.deltaTime;
 		playerRigidbody.MovePosition (transform.position + movement);
     }
+
+
+
+
+
 }
