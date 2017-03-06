@@ -10,6 +10,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+		public GameObject enemy;
+
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -81,6 +83,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+			gunController ();
         }
 
 
@@ -131,7 +135,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
             UpdateCameraPosition(speed);
 
             m_MouseLook.UpdateCursorLock();
+
+
         }
+
+		private void gunController()
+		{
+			if (Input.GetMouseButtonDown (0)) {
+				
+				EnemyController.underFire = true;
+			} 
+			if (Input.GetMouseButtonUp (0)) {
+
+				EnemyController.underFire = false;
+			} 
+
+		}
+
+	
 
 
         private void PlayJumpSound()
