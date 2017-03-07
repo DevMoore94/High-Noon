@@ -31,16 +31,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		// Update is called once per frame
 		void Update () {
 			enemyAi ();
-
-			Debug.Log (underFire.ToString());
-
 		}
 
 
 		void enemyAi()
 		{
-
-
 			
 			if (underFire) 
 			{

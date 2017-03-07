@@ -14,6 +14,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public Transform gunEnd;
 		AudioSource gunShotSound;
 		private double FireNext;
+		public Camera fpsCamera;
+
 
 		void Start () {
 			
@@ -27,9 +29,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			if (Input.GetMouseButtonDown (0) && Time.time > FireNext) 
 			{
-				Debug.Log ("NextFire: " + FireNext);
-				Debug.Log ("FireRate: " + rate);
-								
+				
 				FireNext = Time.time + rate;
 				StartCoroutine (fire ());
 
@@ -37,20 +37,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		}
 
 		private IEnumerator fire(){
-			
 			gunShotSound.Play ();
 			RaycastHit hit;
-			Ray ray = new Ray (gunEnd.position, transform.forward);
 
-			if (Physics.Raycast (ray, out hit, weaponRange)) {
+			Vector3 rayOrigin = fpsCamera.ViewportToWorldPoint(new Vector3 (0.5f, 0.5f, 0));
+
+			if (Physics.Raycast (rayOrigin,fpsCamera.transform.forward, out hit, weaponRange)) {
 
 				if (hit.collider.tag == "Enemy") {
-					Debug.Log ("ENEMY SHOT");
-					EnemyController.health -= 25;
+					EnemyController.health -= 50;
 
 				}
 			}
-
+				
 			Debug.DrawRay (gunEnd.position, transform.forward * weaponRange, Color.green);
 			yield return null;
 		}
