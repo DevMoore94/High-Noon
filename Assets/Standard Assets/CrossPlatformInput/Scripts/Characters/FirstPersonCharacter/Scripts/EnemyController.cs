@@ -9,6 +9,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		private float speed;
 		public static float health = 100f;
 
+
+
 		GameObject[] covers;
 		GameObject player;
 		Transform target;

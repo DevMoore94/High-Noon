@@ -16,6 +16,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		private double FireNext;
 		public Camera fpsCamera;
 
+		private Rigidbody bulletRigidbody;
+		public GameObject bullet;
+		public GameObject crosshair;
+
+
 
 		void Start () {
 			
@@ -33,14 +38,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				FireNext = Time.time + rate;
 				StartCoroutine (fire ());
 
+
 			}
 		}
 
 		private IEnumerator fire(){
 			gunShotSound.Play ();
+
+			GameObject bulletClone = Instantiate (bullet, gunEnd.transform.position, gunEnd.transform.rotation);
+			Rigidbody bulletCloneRigidbody =  bulletClone.GetComponent<Rigidbody> ();
+
 			RaycastHit hit;
 
-			Vector3 rayOrigin = fpsCamera.ViewportToWorldPoint(new Vector3 (0.5f, 0.5f, 0));
+			//Vector3 rayOrigin = fpsCamera.ViewportToWorldPoint(new Vector3 (0.5f, 0.5f, 0));
+			Vector3 rayOrigin = gunEnd.position;
 
 			if (Physics.Raycast (rayOrigin,fpsCamera.transform.forward, out hit, weaponRange)) {
 
@@ -49,8 +60,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 				}
 			}
-				
-			Debug.DrawRay (gunEnd.position, transform.forward * weaponRange, Color.green);
+
+
+			bulletCloneRigidbody.velocity = fpsCamera.transform.forward * 20;
+
+			Debug.DrawRay (gunEnd.position, fpsCamera.transform.forward * weaponRange, Color.green);
 			yield return null;
 		}
 	}
