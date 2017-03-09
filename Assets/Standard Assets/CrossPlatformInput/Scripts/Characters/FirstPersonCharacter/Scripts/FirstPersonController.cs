@@ -145,10 +145,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				
 				EnemyController.underFire = true;
 			} 
-			if (Input.GetMouseButtonUp (0)) {
 
-				EnemyController.underFire = false;
-			} 
 
 		}
 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
-	public class RaycastShoot : MonoBehaviour {
+	public class PlayerGunController : MonoBehaviour {
 
 		public int gunDamage = 1;
 		private double rate = 0.75;
 		public float lastShot = 0.0f;
-		public float weaponRange = 1000f;
-		public float hitForce = 100f;
+		//public float weaponRange = 1000f;
+		//public float hitForce = 100f;
 		public Transform gunEnd;
 		AudioSource gunShotSound;
 		private double FireNext;
@@ -51,21 +51,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			RaycastHit hit;
 
 			//Vector3 rayOrigin = fpsCamera.ViewportToWorldPoint(new Vector3 (0.5f, 0.5f, 0));
-			Vector3 rayOrigin = gunEnd.position;
+			//Vector3 rayOrigin = gunEnd.position;
 
-			if (Physics.Raycast (rayOrigin,fpsCamera.transform.forward, out hit, weaponRange)) {
+			/*if (Physics.Raycast (rayOrigin,fpsCamera.transform.forward, out hit, weaponRange)) {
 
 				if (hit.collider.tag == "Enemy") {
 					EnemyController.health -= 50;
 
 				}
-			}
+			}*/
 
 
 			bulletCloneRigidbody.velocity = fpsCamera.transform.forward * 20;
 
-			Debug.DrawRay (gunEnd.position, fpsCamera.transform.forward * weaponRange, Color.green);
+			//Debug.DrawRay (gunEnd.position, fpsCamera.transform.forward * weaponRange, Color.green);
 			yield return null;
 		}
+
+
 	}
 }
