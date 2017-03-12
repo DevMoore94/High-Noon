@@ -4,40 +4,36 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Characters.FirstPerson
 {
-	public class PlayerGunController : MonoBehaviour {
+	public class EnemyGunController : MonoBehaviour {
 
 		public int gunDamage = 1;
-		private double rate = 0.75;
+		private double rate = 2;
 		public float lastShot = 0.0f;
 		//public float weaponRange = 1000f;
 		//public float hitForce = 100f;
 		public Transform gunEnd;
 		AudioSource gunShotSound;
 		private double FireNext;
-		public Camera fpsCamera;
-
 		private Rigidbody bulletRigidbody;
 		public GameObject bullet;
-		public GameObject crosshair;
-
-		public float bulletSpeed = 1;
+		public float bulletSpeed = 60;
 
 
 
 		void Start () {
-			
+
 			gunShotSound = GetComponent<AudioSource> ();
 
 		}
-		
+
 
 		void Update () {
 
 			//aim ();
 
-			if (Input.GetMouseButtonDown (0) && Time.time > FireNext) 
+			if (Time.time > FireNext) 
 			{
-				
+
 				FireNext = Time.time + rate;
 				StartCoroutine (fire ());
 
@@ -69,7 +65,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
 
-			bulletCloneRigidbody.velocity = fpsCamera.transform.forward * bulletSpeed;
+			bulletCloneRigidbody.velocity =  this.transform.forward * bulletSpeed;
 
 
 			//Debug.DrawRay (gunEnd.position, fpsCamera.transform.forward * weaponRange, Color.green);

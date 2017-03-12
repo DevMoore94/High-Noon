@@ -9,11 +9,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		private float speed;
 		public static float health = 100f;
 
-
+		public GameObject player;
 		//AI Variables
 		GameObject[] covers;
-		GameObject player;
-		Transform target;
+
+		public static Transform target;
 		NavMeshAgent agent;
 		public static bool underFire;
 		GameObject ClosestCover;
@@ -88,6 +88,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
 			Debug.Log ("Enemy health: " + health);
+
 
 		}
 
