@@ -47,7 +47,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 	
 			if (underFire) 
 			{
-
+				EnemyGunController.canShoot = false;
 				findClosestCover ();
 				chooseClosestTarget ();
 				agent.SetDestination (target.position);
@@ -57,6 +57,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 				if (target.tag == "cover" && currentDistance < 1) 
 				{
+					
 					animator.SetBool ("isMoving", false);
 					targetTimer = targetTimer + 1 * Time.deltaTime;
 
@@ -73,6 +74,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			{
 				target = player.transform;
 				agent.SetDestination (target.position);
+				EnemyGunController.canShoot = true;
 					
 			}
 

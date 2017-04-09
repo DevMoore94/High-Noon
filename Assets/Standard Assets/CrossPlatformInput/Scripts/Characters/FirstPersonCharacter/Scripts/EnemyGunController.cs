@@ -18,11 +18,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public GameObject bullet;
 		public float bulletSpeed = 60;
 
+		public static bool canShoot = true;
+
+
 
 
 		void Start () {
 
 			gunShotSound = GetComponent<AudioSource> ();
+
 
 		}
 
@@ -33,11 +37,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			if (Time.time > FireNext) 
 			{
+				if (canShoot) {
+					
+					FireNext = Time.time + rate;
+					StartCoroutine (fire ());
 
-				FireNext = Time.time + rate;
-				StartCoroutine (fire ());
-
-
+				}
 			}
 		}
 

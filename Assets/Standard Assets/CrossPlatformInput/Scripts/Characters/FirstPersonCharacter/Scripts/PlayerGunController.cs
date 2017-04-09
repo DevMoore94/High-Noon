@@ -20,7 +20,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		public GameObject bullet;
 		public GameObject crosshair;
 
-		public float bulletSpeed = 1;
+		public float bulletSpeed = 25;
 
 
 
