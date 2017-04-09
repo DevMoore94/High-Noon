@@ -19,11 +19,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		void OnCollisionEnter(Collision col)
 		{
 
-			Debug.Log ("HIT SOMETHING : " + col.gameObject.tag);
+
 
 			if (col.gameObject.tag == "Enemy") 
 			{
 				EnemyController.health -= 50;
+				Debug.Log ("Enemy Health : " + EnemyController.health);
 
 			}
 
