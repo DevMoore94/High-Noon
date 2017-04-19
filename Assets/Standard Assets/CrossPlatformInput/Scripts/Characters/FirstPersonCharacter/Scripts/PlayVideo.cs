@@ -32,6 +32,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			if (timeSinceStart >= movie.duration) {
 				GameController.cutsceneDone = true;
 			}
+
+			if (Input.GetKeyDown(KeyCode.Escape)) {
+				movie.Stop ();
+				audio.Stop ();
+				GameController.cutsceneDone = true;
+			}
 		}
 	}
 }

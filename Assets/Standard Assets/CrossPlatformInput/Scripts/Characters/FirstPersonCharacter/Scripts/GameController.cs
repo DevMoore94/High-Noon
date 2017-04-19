@@ -9,7 +9,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
 	public class GameController : MonoBehaviour {
 
-		public static int currentLevel;
+		public static int currentLevel = 1;
 		public static bool cutsceneDone;
 
 		public Text gameStatusText;
@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 		// Use this for initialization
 		void Start () {
-			currentLevel = 1;
+			
 
 			constantLives.text = "Lives: " + lives;
 			cutsceneDone = false;
@@ -46,12 +46,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				currentLevel++;
 				selectLevel ();
 			}
+
+
+
 		}
 
 
 
 		void selectLevel()
 		{
+			Debug.Log ("CurrentLevel: " + currentLevel);
 			if (lives == 0) 
 			{
 				UnityEngine.Application.LoadLevel (0); 
@@ -97,6 +101,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				{
 					UnityEngine.Application.LoadLevel (9); 
 				}
+				if (currentLevel == 10) 
+				{
+					UnityEngine.Application.LoadLevel (10); 
+				}
+				if (currentLevel == 11) 
+				{
+					UnityEngine.Application.LoadLevel (11); 
+				}
+				if (currentLevel == 12) 
+				{
+					UnityEngine.Application.LoadLevel (12); 
+				}
+				if (currentLevel == 13) 
+				{
+					UnityEngine.Application.LoadLevel (13); 
+				}
+				if (currentLevel == 14) 
+				{
+					UnityEngine.Application.LoadLevel (14); 
+
+				}
 			}
 
 			resetGameValues ();
@@ -120,5 +145,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 			selectLevel ();
 		}
+
+	
 	}
 }
