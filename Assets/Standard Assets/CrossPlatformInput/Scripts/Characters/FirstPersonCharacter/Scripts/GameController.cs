@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -61,7 +62,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				
 				if (currentLevel == 1) 
 				{
-					UnityEngine.Application.LoadLevel (1); 
+					UnityEngine.Application.LoadLevel (1);
+               //     SceneManager.LoadScene();
 				}
 				if (currentLevel == 2) 
 				{
