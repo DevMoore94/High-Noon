@@ -1,4 +1,4 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,11 +8,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
 {
 	public class GameController : MonoBehaviour {
 
-		private int currentLevel;
+		public static int currentLevel;
+		public static bool cutsceneDone;
 
 		public Text gameStatusText;
 		public Text constantLives;
 		private static int lives = 3;
+
 
 
 
@@ -21,6 +23,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			currentLevel = 1;
 
 			constantLives.text = "Lives: " + lives;
+			cutsceneDone = false;
 
 
 		}
@@ -28,16 +31,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
 		// Update is called once per frame
 		void Update () {
 
-			if (EnemyController.health >= 0 && FirstPersonController.health <= 0) 
-			{
+			if (EnemyController.health >= 0 && FirstPersonController.health <= 0) {
 				
-				StartCoroutine (DisplayGameMessage());
+				StartCoroutine (DisplayGameMessage ());
 
 			}
-			else if (EnemyController.health <= 0 && FirstPersonController.health >= 0) 
-			{
+			else if (EnemyController.health <= 0 && FirstPersonController.health >= 0) {
 				currentLevel++;
 
+				selectLevel ();
+			} 
+			else if (cutsceneDone) {
+				currentLevel++;
 				selectLevel ();
 			}
 		}
@@ -77,6 +82,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
 				if (currentLevel == 6) 
 				{
 					UnityEngine.Application.LoadLevel (6); 
+				}
+				if (currentLevel == 7) 
+				{
+					UnityEngine.Application.LoadLevel (7); 
+				}
+				if (currentLevel == 8) 
+				{
+					UnityEngine.Application.LoadLevel (8); 
+				}
+				if (currentLevel == 9) 
+				{
+					UnityEngine.Application.LoadLevel (9); 
 				}
 			}
 
